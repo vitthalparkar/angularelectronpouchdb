@@ -1,0 +1,42 @@
+<!-- <h2 mat-dialog-title>{{description}}</h2> -->
+<h2 mat-dialog-title>{{formMode}}</h2>
+
+<form name="addEmployeeForm" [formGroup]="addEmployeeForm" (submit)="createUpdateEmployee()">
+    <mat-dialog-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Employee Name</mat-label>
+            <input ngTrim="true" matInput placeholder="Employee Name" formControlName="emp_name">
+            <mat-error *ngIf="hasError('emp_name', 'required')">Employee Name is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Employee Age</mat-label>
+            <input ngTrim="true" matInput placeholder="Employee Age" formControlName="emp_age">
+            <mat-error *ngIf="hasError('emp_age', 'required')">Employee Age is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Employee Address</mat-label>
+            <input ngTrim="true" matInput placeholder="Employee Address" formControlName="emp_address">
+            <mat-error *ngIf="hasError('emp_address', 'required')">Employee Address is required</mat-error>
+        </mat-form-field>
+        <br>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Contact Number</mat-label>
+            <input ngTrim="true" matInput placeholder="Employee Contact" formControlName="emp_contact">
+            <mat-error *ngIf="hasError('emp_contact', 'required')">Contact Number is required</mat-error>
+        </mat-form-field>
+
+        <br>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class="mat-raised-button common-btn-theme" type="button" (click)="close()">
+                    Cancel
+                </button>
+        <button [disabled]="!addEmployeeForm.valid" type="submit" 
+        class="mat-raised-button common-btn-theme">
+                    Save
+                </button>
+    </mat-dialog-actions>
+</form>

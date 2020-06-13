@@ -1,0 +1,37 @@
+<div class="content" role="main">
+  <mat-toolbar>
+    <mat-toolbar-row>
+        <span class="example-spacer">Employee</span>
+        <mat-icon class="cursor-pointer" aria-hidden="false" (click)="openAddEmployeePopup()" >add_circle_outline</mat-icon>
+        <span style="padding-left: 50px;" class="example-spacer">refresh</span>
+        <mat-icon class="cursor-pointer" aria-hidden="false" (click)="refreshlist()" >refresh</mat-icon>
+      </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<script>
+  require('./employeedb.js');
+</script>
+<table style="width:50%;" mat-table matSort matSortDirection="asc" 
+matSortDisableClear [dataSource]="employees_data" class="mat-elevation-z8">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="emp_name">
+      <th mat-header-cell  style="width:30%;"  *matHeaderCellDef mat-sort-header>Employee Name</th>
+      <td mat-cell style="width:30%;"  *matCellDef="let element">{{ element.emp_name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="emp_age">
+    <th mat-header-cell style="width:10%;"   *matHeaderCellDef mat-sort-header>Age</th>
+    <td mat-cell style="width:10%;"   *matCellDef="let element">{{ element.emp_age }}</td>
+  </ng-container>
+  <ng-container matColumnDef="emp_address">
+    <th mat-header-cell style="width:40%;"    *matHeaderCellDef mat-sort-header>Address</th>
+    <td mat-cell style="width:40%;"   *matCellDef="let element">{{ element.emp_address }}</td>
+  </ng-container>
+  <ng-container matColumnDef="emp_contact">
+    <th mat-header-cell style="width:20%;"    *matHeaderCellDef mat-sort-header>Contact</th>
+    <td mat-cell style="width:20%;"   *matCellDef="let element">{{ element.emp_contact }}</td>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns">  </mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table>
+
+<router-outlet></router-outlet>
